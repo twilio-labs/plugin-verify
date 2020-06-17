@@ -1,24 +1,31 @@
 import React from 'react';
 
-import { VerifyStyles } from './Verify.Styles';
+import { NotVerifiedStyles, VerifiedStyles, VerifiedBannerStyles } from './Verify.Styles';
 
-const Verify = (props) => {
+export const VerifyButton = (props) => {
   if (!props.verified) {
     return (
-      <VerifyStyles>
-        <i className="red">NOT verified</i>
-        <i className="accented" onClick={props.verify}>
-          verify
-        </i>
-      </VerifyStyles>
+      <NotVerifiedStyles onClick={props.verify}>
+        VERIFY
+      </NotVerifiedStyles>
     );
   } else {
     return (
-      <VerifyStyles>
-        <i className="green">Verified</i>
-      </VerifyStyles>
+      <VerifiedStyles>
+        VERIFIED
+      </VerifiedStyles>
     );
   }
 };
 
-export default Verify;
+export const VerifyBanner = (props) => {
+  if (!props.verified) {
+    return null;
+  } else {
+    return (
+      <VerifiedBannerStyles>
+        CUSTOMER VERIFIED
+      </VerifiedBannerStyles>
+    );
+  }
+};

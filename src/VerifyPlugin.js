@@ -1,9 +1,8 @@
 import React from 'react';
-import { VERSION, Tab } from '@twilio/flex-ui';
+import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
-import CustomTaskListContainer from './components/CustomTaskList/CustomTaskList.Container';
-import VerifyContainer from './components/Verify/Verify.Container';
+import { VerifyButtonContainer, VerifyBannerContainer } from './components/Verify/Verify.Container';
 import reducers, { namespace } from './states';
 
 const PLUGIN_NAME = 'VerifyPlugin';
@@ -27,15 +26,23 @@ export default class VerifyPlugin extends FlexPlugin {
     flex.AgentDesktopView
       .Panel1
       .Content
-      .add(<VerifyContainer key="verify-component" />, options);
+      .add(<VerifyBannerContainer key="verify-banner" />, options);
 
-    const Img = <img src="https://twilio-cms-prod.s3.amazonaws.com/images/verify-logo-red.original.png" />; 
+    // const Img = <img src="https://twilio-cms-prod.s3.amazonaws.com/images/verify-logo-red.original.png" />; 
   
-    flex.TaskCanvasTabs.Content.add(
-      <Tab icon={Img} iconActive={Img} key="my-new-tab">
-        <VerifyContainer/>
-      </Tab>
-    );
+    // flex.TaskCanvasTabs.Content.add(
+    //   <Tab icon={Img} iconActive={Img} key="my-new-tab">
+    //     <VerifyContainer/>
+    //   </Tab>
+    // );
+
+    // flex.TaskCanvasHeader.Content.add(
+    //   <VerifyContainer key="verify-component-2" />
+    // )
+
+    flex.TaskCanvasHeader.Content.add(
+      <VerifyButtonContainer key="verify-button" />
+    )
   }
 
   /**
