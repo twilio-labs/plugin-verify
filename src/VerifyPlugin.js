@@ -1,8 +1,9 @@
 import React from 'react';
-import { VERSION } from '@twilio/flex-ui';
+import { VERSION, Tab } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import CustomTaskListContainer from './components/CustomTaskList/CustomTaskList.Container';
+import VerifyContainer from './components/Verify/Verify.Container';
 import reducers, { namespace } from './states';
 
 const PLUGIN_NAME = 'VerifyPlugin';
@@ -26,7 +27,15 @@ export default class VerifyPlugin extends FlexPlugin {
     flex.AgentDesktopView
       .Panel1
       .Content
-      .add(<CustomTaskListContainer key="demo-component" />, options);
+      .add(<VerifyContainer key="verify-component" />, options);
+
+    const Img = <img src="https://twilio-cms-prod.s3.amazonaws.com/images/verify-logo-red.original.png" />; 
+  
+    flex.TaskCanvasTabs.Content.add(
+      <Tab icon={Img} iconActive={Img} key="my-new-tab">
+        <VerifyContainer/>
+      </Tab>
+    );
   }
 
   /**
