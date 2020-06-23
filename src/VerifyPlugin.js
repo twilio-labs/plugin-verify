@@ -28,14 +28,23 @@ export default class VerifyPlugin extends FlexPlugin {
       .Content
       .add(<VerifyBannerContainer key="verify-banner" />, options);
 
-    flex.TaskCanvasHeader.Content.add(
-      <VerifyButtonContainer key="verify-button" />
-    )
-
-    flex.AgentDesktopView
-      .Panel1
+    flex.TaskCanvas
       .Content
-      .add(<TokenFormContainer key="token-form" />, options)
+      .add(
+        <VerifyButtonContainer key="verify-button" />,
+        { sortOrder: 0 }
+      )
+
+    // flex.AgentDesktopView
+    //   .Panel1
+    //   .Content
+    //   .add(<TokenFormContainer key="token-form" />, options)
+
+    flex.TaskCanvas
+      .Content
+      .add(
+        <TokenFormContainer key="token-form" />, { sortOrder: 0 })
+    
   }
 
   /**

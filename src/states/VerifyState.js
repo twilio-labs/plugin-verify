@@ -6,9 +6,10 @@ const initialState = {
   tokenSent: false,
 };
 
-function startVerification() {
+function startVerification(to) {
+  console.log("To: ", to);
   // const body = { 
-  //   to: '+12313576187' 
+  //   to: "+12313576187"
   // };
 
   // const options = {
@@ -25,10 +26,11 @@ function startVerification() {
   //     console.log(data);
   //     return data.success;
   //   });
-  return true;
 }
 
-function checkVerification() {
+function checkVerification(event) {
+  console.log(event);
+  console.log('VERIFICATION CHECKED!!!!');
   // const body = { 
   //   to: '+12313576187',
   //   verification_code: '123456',
@@ -52,27 +54,30 @@ function checkVerification() {
 }
 
 export class Actions {
-  static startVerification = () => ({
-    type: ACTION_START_VERIFICATION
+  static startVerification = (to) => ({
+    type: ACTION_START_VERIFICATION,
+    to: to,
   })
 
-  static checkVerification = () => ({
-    type: ACTION_CHECK_VERIFICATION
+  static checkVerification = (token) => ({
+    type: ACTION_CHECK_VERIFICATION,
+    token: token,
   })
 }
 
 export function reduce(state = initialState, action) {
   switch (action.type) {
     case ACTION_START_VERIFICATION: {
-      startVerification();
+      startVerification(action.to);
       return {
         ...state,
         tokenSent: true,
+        to: action.to,
       }
     }
 
     case ACTION_CHECK_VERIFICATION: {
-      var verified = checkVerification();
+      var verified = checkVerification(action.token);
       return {
         ...state,
         verified: verified,

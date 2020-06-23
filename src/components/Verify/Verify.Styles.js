@@ -1,24 +1,24 @@
 import { default as styled } from 'react-emotion';
 import { Button } from '@twilio/flex-ui';
 
-const VerifyButton = styled(Button)`
+
+export const StartVerifyButtonStyles = styled(Button)`
   color: white;
-  margin-left: 10px;
-`
-
-export const VerifiedButtonStyles = styled(VerifyButton)`
-  background: #3d994b;
-  pointer-events: none;
-`;
-
-export const NotVerifiedButtonStyles = styled(VerifyButton)`
   background: #b03937;
 `
 
-export const InputTokenStyles = styled('div')`
-  background: #39ff14;
+export const InputTokenStyles = styled('form')`
+  margin: 0 auto;
 `
 
-export const VerifiedBannerStyles = styled('div')`
+export const BannerStyles = styled('div')`
+  font-weight: bold;
+  color: white;
+  padding: 8px;
+  line-height: normal;
+  text-align: center;
+`
+
+export const VerifiedBannerStyles = styled(BannerStyles)`
   background: #3d994b;
 `;

@@ -1,52 +1,53 @@
 import React from 'react';
+import { withTaskContext } from '@twilio/flex-ui';
 
 import { 
-  NotVerifiedButtonStyles,
-  VerifiedButtonStyles,
+  StartVerifyButtonStyles,
   VerifiedBannerStyles,
-  InputTokenStyles
+  InputTokenStyles,
 } from './Verify.Styles';
 
-export const VerifyButton = (props) => {
-  if (props.verified) {
+
+const StartVerifyButton = (props) => {
+  if (!props.verified && !props.tokenSent) {
+    const to = props.task.defaultFrom;
+    console.log(to);
     return (
-      <VerifiedButtonStyles>
-        VERIFIED
-      </VerifiedButtonStyles>
+      <StartVerifyButtonStyles onClick={() => props.startVerification(to)}>
+        SEND VERIFICATION TOKEN TO USER
+      </StartVerifyButtonStyles>
     );
   } else {
-    return (
-      <NotVerifiedButtonStyles onClick={props.startVerification}>
-        VERIFY
-      </NotVerifiedButtonStyles>
-    );
+    return null;
   }
 };
 
+export const VerifyButton = withTaskContext(StartVerifyButton);
+
 export const TokenForm = (props) => {
-  return (
-    <InputTokenStyles>HELLOOOOO</InputTokenStyles>
-  )
-  // if (props.tokenSent) {
-  //   return (
-  //     <InputTokenStyles>
-  //       <input type="text"/>
-  //       <input type="submit" onClick={props.checkVerification}/>
-  //     </InputTokenStyles>
-  //   )
-  // } else {
-  //   return null;
-  // }
+  if (props.tokenSent && !props.verified) {
+    return (
+      <div>
+        <InputTokenStyles>
+          <input type="text" placeholder="verification token" name="token" />
+          <input type="button" value="Verify" onClick={e => props.checkVerification(e.target.value)} />
+          <input type="button" value="Resend" onClick={() => props.startVerification("+12313576187")} />
+        </InputTokenStyles>
+      </div>
+    )
+  } else {
+    return null;
+  }
 }
 
 export const VerifyBanner = (props) => {
-  if (!props.verified) {
-    return null;
-  } else {
+  if (props.verified) {
     return (
       <VerifiedBannerStyles>
         CUSTOMER VERIFIED
       </VerifiedBannerStyles>
     );
+  } else {
+    return null;
   }
 };
