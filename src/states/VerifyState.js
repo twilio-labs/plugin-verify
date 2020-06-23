@@ -9,7 +9,7 @@ const initialState = {
 function startVerification(to) {
   console.log("To: ", to);
   const body = { 
-    to: "+12313576187"
+    to: to 
   };
 
   const options = {
@@ -48,7 +48,7 @@ function checkVerification(token, to) {
     .then(resp => resp.json())
     .then(data => {
       console.log(data);
-      return data;
+      return data.success;
     });
 }
 
@@ -60,7 +60,8 @@ export class Actions {
 
   static checkVerification = (token, to) => ({
     type: ACTION_CHECK_VERIFICATION,
-    verified: checkVerification(token, to)
+    token: token,
+    to: to,
   })
 }
 
@@ -96,11 +97,12 @@ export function reduce(state = initialState, action) {
       // see: https://www.twilio.com/docs/flex/ui/redux#writing-asynchronous-actions
       console.log("=====================================")
       console.log("==========NO PROMISE HANDLING========")
-      console.log(action.verified.success);
+      const verified = Promise.resolve(checkVerification(action.token, action.to))
+      console.log(verified);
       console.log("=====================================")
       return {
         ...state,
-        verified: action.verified.success,
+        verified: verified,
       }
     }
 
