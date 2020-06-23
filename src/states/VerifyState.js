@@ -75,42 +75,15 @@ export function reduce(state = initialState, action) {
       }
     }
 
-    case `${ACTION_CHECK_VERIFICATION}_PENDING`:
-      console.log("=====================================")
-      console.log("==========PENDING=========")
-      console.log("=====================================")
-      return state;
-  
-    case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
-      console.log("=====================================")
-      console.log("==========FULFILLED=========")
-      console.log(action.verified.success);
-      console.log("=====================================")
-      return {
-        ...state,
-        verified: action.verified.success,
-      }
-    }
-
     case ACTION_CHECK_VERIFICATION: {
-      // todo this is still what gets triggered, why doesn't the pending/fulfilled work?
+      // TODO - get this working with Promise handling
       // see: https://www.twilio.com/docs/flex/ui/redux#writing-asynchronous-actions
-      console.log("=====================================")
-      console.log("==========NO PROMISE HANDLING========")
       const verified = Promise.resolve(checkVerification(action.token, action.to))
-      console.log(verified);
-      console.log("=====================================")
       return {
         ...state,
         verified: verified,
       }
     }
-
-    case `${ACTION_CHECK_VERIFICATION}_REJECTED`:
-      console.log("=====================================")
-      console.log("==========REJECTED=========")
-      console.log("=====================================") 
-      return state;
 
     default:
       return state;
