@@ -8,49 +8,48 @@ const initialState = {
 
 function startVerification(to) {
   console.log("To: ", to);
-  // const body = { 
-  //   to: "+12313576187"
-  // };
+  const body = { 
+    to: "+12313576187"
+  };
 
-  // const options = {
-  //   method: 'POST',
-  //   body: new URLSearchParams(body),
-  //   headers: {
-  //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-  //   }
-  // };
+  const options = {
+    method: 'POST',
+    body: new URLSearchParams(body),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    }
+  };
 
-  // fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     console.log(data);
-  //     return data.success;
-  //   });
+  fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+      return data.success;
+    });
 }
 
-function checkVerification(event) {
-  console.log(event);
-  console.log('VERIFICATION CHECKED!!!!');
-  // const body = { 
-  //   to: '+12313576187',
-  //   verification_code: '123456',
-  // };
+function checkVerification(token, to) {
+  console.log(token);
+  console.log(to);
+  const body = { 
+    to: to,
+    verification_code: token,
+  };
 
-  // const options = {
-  //   method: 'POST',
-  //   body: new URLSearchParams(body),
-  //   headers: {
-  //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-  //   }
-  // };
+  const options = {
+    method: 'POST',
+    body: new URLSearchParams(body),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+    }
+  };
 
-  // fetch('http://flex-verify-4625-dev.twil.io/check-verify', options)
-  //   .then(resp => resp.json())
-  //   .then(data => {
-  //     console.log(data);
-  //     return data.success;
-  //   });
-  return true;
+  return fetch('http://flex-verify-4625-dev.twil.io/check-verify', options)
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
 
 export class Actions {
@@ -59,9 +58,9 @@ export class Actions {
     to: to,
   })
 
-  static checkVerification = (token) => ({
+  static checkVerification = (token, to) => ({
     type: ACTION_CHECK_VERIFICATION,
-    token: token,
+    verified: checkVerification(token, to)
   })
 }
 
@@ -72,17 +71,44 @@ export function reduce(state = initialState, action) {
       return {
         ...state,
         tokenSent: true,
-        to: action.to,
+      }
+    }
+
+    case `${ACTION_CHECK_VERIFICATION}_PENDING`:
+      console.log("=====================================")
+      console.log("==========PENDING=========")
+      console.log("=====================================")
+      return state;
+  
+    case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
+      console.log("=====================================")
+      console.log("==========FULFILLED=========")
+      console.log(action.verified.success);
+      console.log("=====================================")
+      return {
+        ...state,
+        verified: action.verified.success,
       }
     }
 
     case ACTION_CHECK_VERIFICATION: {
-      var verified = checkVerification(action.token);
+      // todo this is still what gets triggered, why doesn't the pending/fulfilled work?
+      // see: https://www.twilio.com/docs/flex/ui/redux#writing-asynchronous-actions
+      console.log("=====================================")
+      console.log("==========NO PROMISE HANDLING========")
+      console.log(action.verified.success);
+      console.log("=====================================")
       return {
         ...state,
-        verified: verified,
+        verified: action.verified.success,
       }
     }
+
+    case `${ACTION_CHECK_VERIFICATION}_REJECTED`:
+      console.log("=====================================")
+      console.log("==========REJECTED=========")
+      console.log("=====================================") 
+      return state;
 
     default:
       return state;

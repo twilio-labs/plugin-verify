@@ -8,7 +8,7 @@ import {
 } from './Verify.Styles';
 
 
-const StartVerifyButton = (props) => {
+const StartVerify = (props) => {
   if (!props.verified && !props.tokenSent) {
     const to = props.task.defaultFrom;
     console.log(to);
@@ -22,16 +22,19 @@ const StartVerifyButton = (props) => {
   }
 };
 
-export const VerifyButton = withTaskContext(StartVerifyButton);
+export const VerifyButton = withTaskContext(StartVerify);
 
-export const TokenForm = (props) => {
+export const CheckVerify = (props) => {
   if (props.tokenSent && !props.verified) {
     return (
       <div>
         <InputTokenStyles>
-          <input type="text" placeholder="verification token" name="token" />
-          <input type="button" value="Verify" onClick={e => props.checkVerification(e.target.value)} />
-          <input type="button" value="Resend" onClick={() => props.startVerification("+12313576187")} />
+          <input type="text" placeholder="verification token" id="token" />
+          <input type="button" value="Verify" onClick={() => {
+            const token = document.getElementById("token").value;
+            props.checkVerification(token, props.task.defaultFrom);
+          }} />
+          {/* <input type="button" value="Resend" onClick={() => props.startVerification(props.to)} /> */}
         </InputTokenStyles>
       </div>
     )
@@ -39,6 +42,8 @@ export const TokenForm = (props) => {
     return null;
   }
 }
+
+export const TokenForm = withTaskContext(CheckVerify);
 
 export const VerifyBanner = (props) => {
   if (props.verified) {
