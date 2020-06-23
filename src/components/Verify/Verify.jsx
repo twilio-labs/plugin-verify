@@ -1,22 +1,36 @@
 import React from 'react';
 
-import { NotVerifiedStyles, VerifiedStyles, VerifiedBannerStyles } from './Verify.Styles';
+import { 
+  NotVerifiedButtonStyles,
+  VerifiedButtonStyles,
+  VerifiedBannerStyles,
+  InputTokenStyles
+} from './Verify.Styles';
 
 export const VerifyButton = (props) => {
   if (!props.verified) {
     return (
-      <NotVerifiedStyles onClick={props.verify}>
+      <NotVerifiedButtonStyles onClick={props.startVerification}>
         VERIFY
-      </NotVerifiedStyles>
+      </NotVerifiedButtonStyles>
     );
   } else {
     return (
-      <VerifiedStyles>
+      <VerifiedButtonStyles>
         VERIFIED
-      </VerifiedStyles>
+      </VerifiedButtonStyles>
     );
   }
 };
+
+export const TokenForm = (props) => {
+  return (
+    <InputTokenStyles>
+      <input type="text"/>
+      <input type="submit"/>
+    </InputTokenStyles>
+  )
+}
 
 export const VerifyBanner = (props) => {
   if (!props.verified) {

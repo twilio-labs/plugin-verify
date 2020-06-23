@@ -1,4 +1,5 @@
-const ACTION_MARK_VERIFIED = 'MARK_VERIFIED';
+const ACTION_START_VERIFICATION = 'START_VERIFICATION';
+const ACTION_CHECK_VERIFICATION = 'CHECK_VERIFICATION';
 
 const initialState = {
   verified: false,
@@ -23,20 +24,36 @@ function startVerification() {
     .then(data => console.log(data));
 }
 
+function checkVerification() {
+  return true;
+}
+
 export class Actions {
-  static verify = () => ({
-    type: ACTION_MARK_VERIFIED
+  static startVerification = () => ({
+    type: ACTION_START_VERIFICATION
+  })
+
+  static checkVerification = () => ({
+    type: ACTION_CHECK_VERIFICATION
   })
 }
 
 export function reduce(state = initialState, action) {
   switch (action.type) {
-    case ACTION_MARK_VERIFIED: {
+    case ACTION_START_VERIFICATION: {
       startVerification();
       return {
         ...state,
         verified: true,
       };
+    }
+
+    case ACTION_CHECK_VERIFICATION: {
+      var verified = checkVerification();
+      return {
+        ...state,
+        verified: verified,
+      }
     }
 
     default:

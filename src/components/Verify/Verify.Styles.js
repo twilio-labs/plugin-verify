@@ -3,17 +3,24 @@ import { Button } from '@twilio/flex-ui';
 
 const VerifyButton = styled(Button)`
   color: white;
+  margin-left: 10px;
 `
 
-export const VerifiedStyles = styled(VerifyButton)`
+export const VerifiedButtonStyles = styled(VerifyButton)`
   background: #3d994b;
   pointer-events: none;
 `;
+
+export const NotVerifiedButtonStyles = styled(VerifyButton)`
+  background: #b03937;
+`
+
+export const InputTokenStyles = styled('form')`
+  background: #3d994b;
+`
 
 export const VerifiedBannerStyles = styled('div')`
   background: #3d994b;
 `;
 
-export const NotVerifiedStyles = styled(VerifyButton)`
-  background: #b03937;
-`
+
