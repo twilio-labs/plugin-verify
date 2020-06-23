@@ -5,7 +5,8 @@ import { Actions } from '../../states/VerifyState';
 import { VerifyButton, VerifyBanner, TokenForm } from './Verify';
 
 const mapStateToProps = (state) => ({
-  verified: state['verify'].verify.verified
+  verified: state['verify'].verify.verified,
+  tokenSent: state['verify'].verify.tokenSent,
 });
 
 const mapDispatchToProps = (dispatch) => ({

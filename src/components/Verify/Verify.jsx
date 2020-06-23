@@ -8,28 +8,35 @@ import {
 } from './Verify.Styles';
 
 export const VerifyButton = (props) => {
-  if (!props.verified) {
-    return (
-      <NotVerifiedButtonStyles onClick={props.startVerification}>
-        VERIFY
-      </NotVerifiedButtonStyles>
-    );
-  } else {
+  if (props.verified) {
     return (
       <VerifiedButtonStyles>
         VERIFIED
       </VerifiedButtonStyles>
+    );
+  } else {
+    return (
+      <NotVerifiedButtonStyles onClick={props.startVerification}>
+        VERIFY
+      </NotVerifiedButtonStyles>
     );
   }
 };
 
 export const TokenForm = (props) => {
   return (
-    <InputTokenStyles>
-      <input type="text"/>
-      <input type="submit"/>
-    </InputTokenStyles>
+    <InputTokenStyles>HELLOOOOO</InputTokenStyles>
   )
+  // if (props.tokenSent) {
+  //   return (
+  //     <InputTokenStyles>
+  //       <input type="text"/>
+  //       <input type="submit" onClick={props.checkVerification}/>
+  //     </InputTokenStyles>
+  //   )
+  // } else {
+  //   return null;
+  // }
 }
 
 export const VerifyBanner = (props) => {

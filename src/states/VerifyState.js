@@ -3,28 +3,51 @@ const ACTION_CHECK_VERIFICATION = 'CHECK_VERIFICATION';
 
 const initialState = {
   verified: false,
+  tokenSent: false,
 };
 
-
 function startVerification() {
-  const body = { 
-    to: '+12313576187' 
-  };
+  // const body = { 
+  //   to: '+12313576187' 
+  // };
 
-  const options = {
-    method: 'POST',
-    body: new URLSearchParams(body),
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    }
-  };
+  // const options = {
+  //   method: 'POST',
+  //   body: new URLSearchParams(body),
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  //   }
+  // };
 
-  fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
-    .then(resp => resp.json())
-    .then(data => console.log(data));
+  // fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
+  //   .then(resp => resp.json())
+  //   .then(data => {
+  //     console.log(data);
+  //     return data.success;
+  //   });
+  return true;
 }
 
 function checkVerification() {
+  // const body = { 
+  //   to: '+12313576187',
+  //   verification_code: '123456',
+  // };
+
+  // const options = {
+  //   method: 'POST',
+  //   body: new URLSearchParams(body),
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+  //   }
+  // };
+
+  // fetch('http://flex-verify-4625-dev.twil.io/check-verify', options)
+  //   .then(resp => resp.json())
+  //   .then(data => {
+  //     console.log(data);
+  //     return data.success;
+  //   });
   return true;
 }
 
@@ -44,8 +67,8 @@ export function reduce(state = initialState, action) {
       startVerification();
       return {
         ...state,
-        verified: true,
-      };
+        tokenSent: true,
+      }
     }
 
     case ACTION_CHECK_VERIFICATION: {

@@ -2,7 +2,7 @@ import React from 'react';
 import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
-import { VerifyButtonContainer, VerifyBannerContainer } from './components/Verify/Verify.Container';
+import { VerifyButtonContainer, VerifyBannerContainer, TokenFormContainer } from './components/Verify/Verify.Container';
 import reducers, { namespace } from './states';
 
 const PLUGIN_NAME = 'VerifyPlugin';
@@ -28,21 +28,14 @@ export default class VerifyPlugin extends FlexPlugin {
       .Content
       .add(<VerifyBannerContainer key="verify-banner" />, options);
 
-    // const Img = <img src="https://twilio-cms-prod.s3.amazonaws.com/images/verify-logo-red.original.png" />; 
-  
-    // flex.TaskCanvasTabs.Content.add(
-    //   <Tab icon={Img} iconActive={Img} key="my-new-tab">
-    //     <VerifyContainer/>
-    //   </Tab>
-    // );
-
-    // flex.TaskCanvasHeader.Content.add(
-    //   <VerifyContainer key="verify-component-2" />
-    // )
-
     flex.TaskCanvasHeader.Content.add(
       <VerifyButtonContainer key="verify-button" />
     )
+
+    flex.AgentDesktopView
+      .Panel1
+      .Content
+      .add(<TokenFormContainer key="token-form" />, options)
   }
 
   /**

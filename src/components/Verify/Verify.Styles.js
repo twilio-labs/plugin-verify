@@ -15,12 +15,10 @@ export const NotVerifiedButtonStyles = styled(VerifyButton)`
   background: #b03937;
 `
 
-export const InputTokenStyles = styled('form')`
-  background: #3d994b;
+export const InputTokenStyles = styled('div')`
+  background: #39ff14;
 `
 
 export const VerifiedBannerStyles = styled('div')`
   background: #3d994b;
 `;
-
-
