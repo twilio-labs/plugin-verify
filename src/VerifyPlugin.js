@@ -22,28 +22,29 @@ export default class VerifyPlugin extends FlexPlugin {
   init(flex, manager) {
     this.registerReducers(manager);
 
-    const options = { sortOrder: -1 };
-    flex.AgentDesktopView
-      .Panel1
+    flex.TaskCanvas
       .Content
-      .add(<VerifyBannerContainer key="verify-banner" />, options);
+      .add(
+        <VerifyBannerContainer key="verify-banner" />,
+        { sortOrder: -1 }
+      );
 
     flex.TaskCanvas
       .Content
       .add(
         <VerifyButtonContainer key="verify-button" />,
         { sortOrder: 0 }
-      )
-
-    // flex.AgentDesktopView
-    //   .Panel1
-    //   .Content
-    //   .add(<TokenFormContainer key="token-form" />, options)
-
+      );
+    
     flex.TaskCanvas
       .Content
       .add(
-        <TokenFormContainer key="token-form" />, { sortOrder: 0 })
+        <TokenFormContainer key="token-form" />,
+        { sortOrder: 0 }
+      );
+
+    // Remove caller information until they are verifiied
+    flex.TaskCanvasTabs.Content.remove("info");
     
   }
 

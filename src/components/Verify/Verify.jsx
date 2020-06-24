@@ -34,7 +34,6 @@ export const CheckVerify = (props) => {
             const token = document.getElementById("token").value;
             props.checkVerification(token, props.task.defaultFrom);
           }} />
-          {/* <input type="button" value="Resend" onClick={() => props.startVerification(props.to)} /> */}
         </InputTokenStyles>
       </div>
     )

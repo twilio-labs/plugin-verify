@@ -7,7 +7,6 @@ const initialState = {
 };
 
 function startVerification(to) {
-  console.log("To: ", to);
   const body = { 
     to: to 
   };
@@ -29,8 +28,6 @@ function startVerification(to) {
 }
 
 function checkVerification(token, to) {
-  console.log(token);
-  console.log(to);
   const body = { 
     to: to,
     verification_code: token,
@@ -47,8 +44,7 @@ function checkVerification(token, to) {
   return fetch('http://flex-verify-4625-dev.twil.io/check-verify', options)
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
-      return data.success;
+      return data;
     });
 }
 
@@ -59,9 +55,8 @@ export class Actions {
   })
 
   static checkVerification = (token, to) => ({
-    type: ACTION_CHECK_VERIFICATION,
-    token: token,
-    to: to,
+    type: 'CHECK_VERIFICATION',
+    payload: checkVerification(token, to),
   })
 }
 
@@ -74,18 +69,21 @@ export function reduce(state = initialState, action) {
         tokenSent: true,
       }
     }
-
-    case ACTION_CHECK_VERIFICATION: {
-      // TODO - get this working with Promise handling
-      // see: https://www.twilio.com/docs/flex/ui/redux#writing-asynchronous-actions
-      const verified = Promise.resolve(checkVerification(action.token, action.to))
+    case `${ACTION_CHECK_VERIFICATION}_PENDING`:
+      return state;
+    case `${ACTION_CHECK_VERIFICATION}_FULFILLED`:
       return {
         ...state,
-        verified: verified,
-      }
-    }
-
-    default:
+        verified: action.payload.success,
+      };
+    case `${ACTION_CHECK_VERIFICATION}_REJECTED`:
+      return {
+        ...state,
+        verified: false,
+      };
+    default: {
+      console.log("DEFAULT SAD FACE")
       return state;
+    }
   }
 }
