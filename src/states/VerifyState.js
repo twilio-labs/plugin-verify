@@ -49,6 +49,10 @@ function checkVerification(token, to) {
 }
 
 export class Actions {
+  // static startVerification = (to) => ({
+  //   type: ACTION_START_VERIFICATION,
+  //   payload: startVerification(to),
+  // })
   static startVerification = (to) => ({
     type: ACTION_START_VERIFICATION,
     to: to,
@@ -62,6 +66,28 @@ export class Actions {
 
 export function reduce(state = initialState, action) {
   switch (action.type) {
+    // TODO GET THIS WORKING WITH PROMISES IN ORDER TO SHOW ERRORS IF SOMETHING GOES WRONG
+    // case `${ACTION_START_VERIFICATION}_PENDING`:
+    //   return state;
+    // case `${ACTION_START_VERIFICATION}_FULFILLED`: {
+    //   const nextState = {
+    //     ...state,
+    //     tokenSent: action.payload.success,
+    //   }
+    //   if (!action.payload.success) {
+    //     return {
+    //       ...nextState,
+    //       error: action.payload.error.message,
+    //     }
+    //   } else {
+    //     return nextState;
+    //   }
+    // }
+    // case `${ACTION_START_VERIFICATION}_REJECTED`:
+    //   return {
+    //     ...state,
+    //     error: 'Error starting verification.'
+    //   }
     case ACTION_START_VERIFICATION: {
       startVerification(action.to);
       return {
@@ -71,18 +97,27 @@ export function reduce(state = initialState, action) {
     }
     case `${ACTION_CHECK_VERIFICATION}_PENDING`:
       return state;
-    case `${ACTION_CHECK_VERIFICATION}_FULFILLED`:
-      return {
+    case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
+      const success = action.payload.success;
+      const nextState = {
         ...state,
-        verified: action.payload.success,
-      };
+        verified: success,
+      }
+      if (!success) {
+        return {
+          ...nextState,
+          error: "Incorrect token."
+        }
+      } else {
+        return nextState;
+      }
+    }
     case `${ACTION_CHECK_VERIFICATION}_REJECTED`:
       return {
         ...state,
         verified: false,
       };
     default: {
-      console.log("DEFAULT SAD FACE")
       return state;
     }
   }

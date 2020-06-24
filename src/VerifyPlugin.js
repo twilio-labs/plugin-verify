@@ -2,7 +2,12 @@ import React from 'react';
 import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
-import { VerifyButtonContainer, VerifyBannerContainer, TokenFormContainer } from './components/Verify/Verify.Container';
+import {
+  VerifyButtonContainer,
+  VerifyBannerContainer,
+  TokenFormContainer,
+  ErrorMessageContainer,
+} from './components/Verify/Verify.Container';
 import reducers, { namespace } from './states';
 
 const PLUGIN_NAME = 'VerifyPlugin';
@@ -28,6 +33,13 @@ export default class VerifyPlugin extends FlexPlugin {
         <VerifyBannerContainer key="verify-banner" />,
         { sortOrder: -1 }
       );
+
+    flex.TaskCanvas
+      .Content
+      .add(
+        <ErrorMessageContainer key="error-message" />,
+        { sortOrder: -1 }
+      )
 
     flex.TaskCanvas
       .Content

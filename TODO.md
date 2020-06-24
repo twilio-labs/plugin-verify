@@ -8,14 +8,14 @@ Node script?
 # TODO
 [x] hide TaskInfoPanel if user is NOT verified
 [x] move verification banner so it's task/user specific101618
+[x] fix promise handling - actually have a pending/fulfilled state
+[x] hide verification banner when the task concludes
+[x] hide verification button if call has ended (in the "post call state")
 [] add error display when the code is incorrect
 [] add error display when there's an issue sending the token
 [] show TaskInfoPanel if user IS verified
 [] persist verification state on refresh / for duration of the task
-[] hide verification when the task concludes
-[] fix promise handling - actually have a pending/fulfilled state
 [] fix formatting of input token box
-[] hide verification button if call has ended (in the "post call state")
 
 
 

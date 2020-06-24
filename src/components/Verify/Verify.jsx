@@ -5,13 +5,14 @@ import {
   StartVerifyButtonStyles,
   VerifiedBannerStyles,
   InputTokenStyles,
+  ErrorMessageStyles,
 } from './Verify.Styles';
 
 
 const StartVerify = (props) => {
-  if (!props.verified && !props.tokenSent) {
+  if (!props.verified && !props.tokenSent && props.task.status === 'accepted') {
+    console.log(props.task);
     const to = props.task.defaultFrom;
-    console.log(to);
     return (
       <StartVerifyButtonStyles onClick={() => props.startVerification(to)}>
         SEND VERIFICATION TOKEN TO USER
@@ -25,7 +26,7 @@ const StartVerify = (props) => {
 export const VerifyButton = withTaskContext(StartVerify);
 
 export const CheckVerify = (props) => {
-  if (props.tokenSent && !props.verified) {
+  if (props.tokenSent && !props.verified && props.task.status === 'accepted') {
     return (
       <div>
         <InputTokenStyles>
@@ -44,8 +45,8 @@ export const CheckVerify = (props) => {
 
 export const TokenForm = withTaskContext(CheckVerify);
 
-export const VerifyBanner = (props) => {
-  if (props.verified) {
+const ShowVerifyStatus = (props) => {
+  if (props.verified && props.task.status === 'accepted') {
     return (
       <VerifiedBannerStyles>
         CUSTOMER VERIFIED
@@ -55,3 +56,21 @@ export const VerifyBanner = (props) => {
     return null;
   }
 };
+
+export const VerifyBanner = withTaskContext(ShowVerifyStatus)
+
+export const ErrorMessage = (props) => {
+  console.log(props.error);
+  console.log(props);
+  console.log(typeof props.error);
+  // TODO - get this to show up somehow
+  if (typeof props.error != 'undefined') {
+    return (
+      <ErrorMessageStyles>
+        {props.error}
+      </ErrorMessageStyles>
+    )
+  } else {
+    return null;
+  }
+}

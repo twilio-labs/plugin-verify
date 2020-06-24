@@ -4,7 +4,7 @@ import { Button } from '@twilio/flex-ui';
 
 export const StartVerifyButtonStyles = styled(Button)`
   color: white;
-  background: #b03937;
+  background: #d32f2f;
 `
 
 export const InputTokenStyles = styled('form')`
@@ -17,6 +17,10 @@ export const BannerStyles = styled('div')`
   padding: 8px;
   line-height: normal;
   text-align: center;
+`
+
+export const ErrorMessageStyles = styled(BannerStyles)`
+  background: #d32f2f;
 `
 
 export const VerifiedBannerStyles = styled(BannerStyles)`
