@@ -1,5 +1,7 @@
 import { default as styled } from 'react-emotion';
 import { Button } from '@twilio/flex-ui';
+// import { formitems } from '@twilio/flex-ui'; //<-- doesn't work
+// import { DynamicForm } from '@twilio/flex-ui'; //<-- doesn't work
 
 
 export const StartVerifyButtonStyles = styled(Button)`
@@ -10,7 +12,6 @@ export const StartVerifyButtonStyles = styled(Button)`
 export const InputTokenStyles = styled('form')`
   margin: 0 auto;
 `
-
 export const BannerStyles = styled('div')`
   font-weight: bold;
   color: white;

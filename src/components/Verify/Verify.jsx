@@ -1,6 +1,7 @@
 import React from 'react';
 import { withTaskContext } from '@twilio/flex-ui';
 
+
 import { 
   StartVerifyButtonStyles,
   VerifiedBannerStyles,
@@ -74,3 +75,17 @@ export const ErrorMessage = (props) => {
     return null;
   }
 }
+
+const TaskInfoPanel = (props) => {
+  if (props.verified) {
+    return (
+      <VerifiedBannerStyles>
+        CUSTOMER VERIFIED
+      </VerifiedBannerStyles>
+    );
+  } else {
+    return null;
+  }
+}
+
+export const AuthenticatedTaskInfoPanel = withTaskContext(TaskInfoPanel)

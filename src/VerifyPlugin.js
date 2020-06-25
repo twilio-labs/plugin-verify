@@ -56,7 +56,8 @@ export default class VerifyPlugin extends FlexPlugin {
       );
 
     // Remove caller information until they are verifiied
-    flex.TaskCanvasTabs.Content.remove("info");
+    // TODO - make this dynamic based on props.verified
+    // flex.TaskCanvasTabs.Content.remove("info");
     
   }
 
