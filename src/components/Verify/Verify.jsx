@@ -61,10 +61,6 @@ const ShowVerifyStatus = (props) => {
 export const VerifyBanner = withTaskContext(ShowVerifyStatus)
 
 export const ErrorMessage = (props) => {
-  console.log("props.error: ", props.error);
-  console.log("props: ", props);
-  console.log("typeof props.error: ", typeof props.error);
-  // TODO - get this to show up somehow
   if (typeof props.error != 'undefined') {
     return (
       <ErrorMessageStyles>
