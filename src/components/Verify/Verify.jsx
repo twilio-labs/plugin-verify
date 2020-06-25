@@ -31,7 +31,7 @@ export const CheckVerify = (props) => {
     return (
       <div>
         <InputTokenStyles>
-          <input type="text" placeholder="verification token" id="token" />
+          <input type="text" placeholder="Verification token" id="token" />
           <input type="button" value="Verify" onClick={() => {
             const token = document.getElementById("token").value;
             props.checkVerification(token, props.task.defaultFrom);
@@ -61,9 +61,9 @@ const ShowVerifyStatus = (props) => {
 export const VerifyBanner = withTaskContext(ShowVerifyStatus)
 
 export const ErrorMessage = (props) => {
-  console.log(props.error);
-  console.log(props);
-  console.log(typeof props.error);
+  console.log("props.error: ", props.error);
+  console.log("props: ", props);
+  console.log("typeof props.error: ", typeof props.error);
   // TODO - get this to show up somehow
   if (typeof props.error != 'undefined') {
     return (

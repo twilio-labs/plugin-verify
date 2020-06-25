@@ -1,12 +1,14 @@
 # TODO
-[] add error display when the code is incorrect
-[] add error display when there's an issue sending the token
 [] show TaskInfoPanel if user IS verified
 [] persist verification state on refresh / for duration of the task
 [] fix formatting of input token box
 [] add verify service as part of the plugin installation/setup?
 [] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
 [] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
+[] partner promotion content - talk to justin pirie
+[x] get async functions on send working
+[x] add error display when there's an issue sending the token
+[x] add error display when the code is incorrect
 [x] hide TaskInfoPanel if user is NOT verified
 [x] move verification banner so it's task/user specific101618
 [x] fix promise handling - actually have a pending/fulfilled state

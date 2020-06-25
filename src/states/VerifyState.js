@@ -4,6 +4,7 @@ const ACTION_CHECK_VERIFICATION = 'CHECK_VERIFICATION';
 const initialState = {
   verified: false,
   tokenSent: false,
+  error: undefined,
 };
 
 function startVerification(to) {
@@ -19,11 +20,10 @@ function startVerification(to) {
     }
   };
 
-  fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
+  return fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
-      return data.success;
+      return data;
     });
 }
 
@@ -49,13 +49,9 @@ function checkVerification(token, to) {
 }
 
 export class Actions {
-  // static startVerification = (to) => ({
-  //   type: ACTION_START_VERIFICATION,
-  //   payload: startVerification(to),
-  // })
   static startVerification = (to) => ({
     type: ACTION_START_VERIFICATION,
-    to: to,
+    payload: startVerification(to),
   })
 
   static checkVerification = (token, to) => ({
@@ -66,35 +62,30 @@ export class Actions {
 
 export function reduce(state = initialState, action) {
   switch (action.type) {
-    // TODO GET THIS WORKING WITH PROMISES IN ORDER TO SHOW ERRORS IF SOMETHING GOES WRONG
-    // case `${ACTION_START_VERIFICATION}_PENDING`:
-    //   return state;
-    // case `${ACTION_START_VERIFICATION}_FULFILLED`: {
-    //   const nextState = {
-    //     ...state,
-    //     tokenSent: action.payload.success,
-    //   }
-    //   if (!action.payload.success) {
-    //     return {
-    //       ...nextState,
-    //       error: action.payload.error.message,
-    //     }
-    //   } else {
-    //     return nextState;
-    //   }
-    // }
-    // case `${ACTION_START_VERIFICATION}_REJECTED`:
-    //   return {
-    //     ...state,
-    //     error: 'Error starting verification.'
-    //   }
-    case ACTION_START_VERIFICATION: {
-      startVerification(action.to);
-      return {
-        ...state,
-        tokenSent: true,
+    case `${ACTION_START_VERIFICATION}_PENDING`:
+      return state;
+    case `${ACTION_START_VERIFICATION}_FULFILLED`: {
+      const success = action.payload.success;
+      if (success) {
+        return {
+          ...state,
+          tokenSent: true,
+          error: undefined,
+        }
+      } else {
+        return {
+          ...state,
+          tokenSent: false,
+          error: action.payload.error.message,
+        }
       }
     }
+    case `${ACTION_START_VERIFICATION}_REJECTED`:
+      return {
+        ...state,
+        verified: false,
+        error: "System error."
+      };
     case `${ACTION_CHECK_VERIFICATION}_PENDING`:
       return state;
     case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
@@ -102,6 +93,7 @@ export function reduce(state = initialState, action) {
       const nextState = {
         ...state,
         verified: success,
+        error: undefined,
       }
       if (!success) {
         return {
@@ -116,6 +108,7 @@ export function reduce(state = initialState, action) {
       return {
         ...state,
         verified: false,
+        error: "System error."
       };
     default: {
       return state;
