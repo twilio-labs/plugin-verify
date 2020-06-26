@@ -1,13 +1,6 @@
 import { default as styled } from 'react-emotion';
 import { Button } from '@twilio/flex-ui';
-// import { formitems } from '@twilio/flex-ui'; //<-- doesn't work
-// import { DynamicForm } from '@twilio/flex-ui'; //<-- doesn't work
-import { InputItem } from '@twilio/flex-ui';
 
-// export const InputTokenStyles = styled(InputItem)`
-//   color: white;
-//   background: #d32f2f;
-// `
 export const InputContainerStyles = styled('div')`
   display: flex;
   align-items: center;
