@@ -1,6 +1,5 @@
 import React from 'react';
 import { VERSION } from '@twilio/flex-ui';
-import { Icon } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import {
@@ -56,7 +55,6 @@ export default class VerifyPlugin extends FlexPlugin {
         { sortOrder: 0 }
       );
 
-    console.log("flex in plugin.js:", flex);
     // Remove caller information until they are verifiied
     // TODO - make this dynamic based on props.verified
     // flex.TaskCanvasTabs.Content.remove("info");
