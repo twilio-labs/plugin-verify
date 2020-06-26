@@ -1,5 +1,5 @@
 import React from 'react';
-import { VERSION } from '@twilio/flex-ui';
+import { VERSION, Tab } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import {
@@ -59,9 +59,14 @@ export default class VerifyPlugin extends FlexPlugin {
     // Remove caller information until they are verifiied
     // TODO - make this dynamic based on props.verified
     flex.TaskCanvasTabs.Content.remove("info");
-    flex.TaskCanvasTabs.Content.add(
-      <AuthenticatedInfoContainer key="new-task-info"/>
-    );
+    // flex.TaskCanvasTabs.Content.add(
+    //   <AuthenticatedInfoContainer key="auth-info"/>
+    // );
+    
+    // TODO elegant way to do this? This doesn't work.
+    // flex.TaskCanvasTabs.Content.remove("info", {
+    //   if : props => !props.verify.verified 
+    // });
   }
 
   /**

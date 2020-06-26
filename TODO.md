@@ -1,10 +1,12 @@
 # TODO
 [] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
-[] show TaskInfoPanel only if user IS verified
+[] remove task info panel tab until it needs to show up
 [] persist verification state on refresh / for duration of the task
-[] add verify service as part of the plugin installation/setup?
+[] add tests
+[] add verify service as part of the plugin installation/setup instructions
 [] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
 [] partner promotion content - talk to justin pirie
+[x] show TaskInfoPanel only if user IS verified
 [x] fix formatting of input token box
 [x] get async functions on send working
 [x] add error display when there's an issue sending the token
@@ -15,12 +17,16 @@
 [x] hide verification banner when the task concludes
 [x] hide verification button if call has ended (in the "post call state")
 
+# Installation instructions
+# twilio serverless:init default --template=verify
 
 # Questions for code reviewers
 
-1. I'm not an experienced React developer, open to any feedback on the general structure/layout.
+1. I'm not an experienced React or Flex developer, open to any feedback on the general structure/layout!
 1. How do I persist state for the duration of a task? Currently the state resets on refresh.
+1. This flow requires the agent to type in the code. Is this use case valuable or should I focus on a pre-call automatic authentication (using DTMF input)
 1. Is it possible to extend form styling? [See this Slack post](https://twilio.slack.com/archives/C782V4C3Z/p1593111279494100)
+1. Any other suggestions or ideas?
 
 
 # Later features

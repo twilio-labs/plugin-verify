@@ -8,7 +8,7 @@
     "build": "flex-plugin build",
     "clear": "flex-plugin clear",
     "predeploy": "npm run build",
-    "deploy": "flex-plugin deploy",
+    "deploy": "source default/.env && twilio serverless:deploy --service-name=default --override-existing-project --account-sid=$TWILIO_ACCOUNT_SID --auth-token=$TWILIO_AUTH_TOKEN && flex-plugin deploy",
     "eject": "flex-plugin eject",
     "info": "flex-plugin info",
     "postinstall": "npm run bootstrap",
