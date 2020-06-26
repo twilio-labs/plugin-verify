@@ -71,7 +71,8 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 1. I'm not an experienced React or Flex developer, open to any feedback on the general structure/layout!
 1. How do I persist state for the duration of a task? Currently the state resets on refresh.
 1. This flow requires the agent to type in the code. Is this use case valuable or should I focus on a pre-call automatic authentication (using DTMF input)
-1. Is it possible to extend form styling? [See this Slack post](https://twilio.slack.com/archives/C782V4C3Z/p1593111279494100)
+1. How would you toggle content viewability based on plugin state? [See this example for what I'm trying to do](https://github.com/robinske/plugin-verify/blob/master/src/VerifyPlugin.js#L62)
+1. Is it possible to extend flex-ui form styling? Or should I just be using Material UI? [See this Slack post](https://twilio.slack.com/archives/C782V4C3Z/p1593111279494100)
 1. Any other suggestions or ideas?
 
 
