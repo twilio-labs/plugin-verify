@@ -1,11 +1,12 @@
 import React from 'react';
-import { withTaskContext } from '@twilio/flex-ui';
-
+import { withTaskContext, Icon } from '@twilio/flex-ui';
 
 import { 
   StartVerifyButtonStyles,
   VerifiedBannerStyles,
   InputTokenStyles,
+  InputContainerStyles,
+  TokenSubmitStyles,
   ErrorMessageStyles,
 } from './Verify.Styles';
 
@@ -27,21 +28,19 @@ const StartVerify = (props) => {
 export const VerifyButton = withTaskContext(StartVerify);
 
 export const CheckVerify = (props) => {
-  if (props.tokenSent && !props.verified && props.task.status === 'accepted') {
+  // if (props.tokenSent && !props.verified && props.task.status === 'accepted') {
     return (
-      <div>
-        <InputTokenStyles>
-          <input type="text" placeholder="Verification token" id="token" />
-          <input type="button" value="Verify" onClick={() => {
-            const token = document.getElementById("token").value;
-            props.checkVerification(token, props.task.defaultFrom);
-          }} />
-        </InputTokenStyles>
-      </div>
+      <InputContainerStyles>
+        <InputTokenStyles type="text" placeholder="Verification token" id="token" />
+        <TokenSubmitStyles type="button" onClick={() => {
+          const token = document.getElementById("token").value;
+          props.checkVerification(token, props.task.defaultFrom);
+        }}><Icon icon="AcceptLarge"></Icon></TokenSubmitStyles>
+      </InputContainerStyles>
     )
-  } else {
-    return null;
-  }
+  // } else {
+  //   return null;
+  // }
 }
 
 export const TokenForm = withTaskContext(CheckVerify);
@@ -73,15 +72,7 @@ export const ErrorMessage = (props) => {
 }
 
 const TaskInfoPanel = (props) => {
-  if (props.verified) {
-    return (
-      <VerifiedBannerStyles>
-        CUSTOMER VERIFIED
-      </VerifiedBannerStyles>
-    );
-  } else {
-    return null;
-  }
+  console.log(props.flex);
 }
 
 export const AuthenticatedTaskInfoPanel = withTaskContext(TaskInfoPanel)

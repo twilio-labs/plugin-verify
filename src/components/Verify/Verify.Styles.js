@@ -2,16 +2,37 @@ import { default as styled } from 'react-emotion';
 import { Button } from '@twilio/flex-ui';
 // import { formitems } from '@twilio/flex-ui'; //<-- doesn't work
 // import { DynamicForm } from '@twilio/flex-ui'; //<-- doesn't work
+import { InputItem } from '@twilio/flex-ui';
 
+// export const InputTokenStyles = styled(InputItem)`
+//   color: white;
+//   background: #d32f2f;
+// `
+export const InputContainerStyles = styled('div')`
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+`;
+
+export const InputTokenStyles = styled('input')`
+  width: 75%;
+  border-radius: 5px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+`
+
+export const TokenSubmitStyles = styled(Button)`
+  width: 20%;
+  color: white;
+  background: #3d994b;
+`
 
 export const StartVerifyButtonStyles = styled(Button)`
   color: white;
   background: #d32f2f;
 `
 
-export const InputTokenStyles = styled('form')`
-  margin: 0 auto;
-`
 export const BannerStyles = styled('div')`
   font-weight: bold;
   color: white;
