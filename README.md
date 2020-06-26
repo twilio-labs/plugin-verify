@@ -1,23 +1,20 @@
-# Your custom Twilio Flex Plugin
+# Twilio Flex Plugin for Verify
 
-Twilio Flex Plugins allow you to customize the appearance and behavior of [Twilio Flex](https://www.twilio.com/flex). If you want to learn more about the capabilities and how to use the API, check out our [Flex documentation](https://www.twilio.com/docs/flex).
+![demo video](flex-verify-demo.mp4)
 
 ## Setup
 
-Make sure you have [Node.js](https://nodejs.org) as well as [`npm`](https://npmjs.com) installed.
+Install [Node.js](https://nodejs.org) and [`npm`](https://npmjs.com).
 
-Afterwards, install the dependencies by running `npm install`:
+Then install the dependencies by running `npm install`:
 
 ```bash
-cd 
-
-# If you use npm
 npm install
 ```
 
 ## Development
 
-In order to develop locally, you can use the Webpack Dev Server by running:
+Start the server by running:
 
 ```bash
 npm start
@@ -28,8 +25,6 @@ This will automatically start up the Webpack Dev Server and open the browser for
 ```bash
 PORT=3001 npm start
 ```
-
-When you make changes to your code, the browser window will be automatically refreshed.
 
 ## Deploy
 
@@ -48,3 +43,39 @@ npm run deploy --public
 For more details on deploying your plugin, refer to the [deploying your plugin guide](https://www.twilio.com/docs/flex/plugins#deploying-your-plugin).
 
 Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not bundled with the build because they are treated as external dependencies so the plugin will depend on Flex to provide them globally.
+
+## TODO
+
+- [ ] remove task info panel tab until it needs to show up
+- [ ] persist verification state on refresh / for duration of the task
+- [ ] add tests
+- [ ] add verify service as part of the plugin installation/setup instructions
+- [ ] figure out how to deploy functions seamlessly
+- [ ] reference deployed functions in VerifyState instead
+- [ ] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
+- [ ] partner promotion content - talk to justin pirie
+- [x] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
+- [x] show TaskInfoPanel only if user IS verified
+- [x] fix formatting of input token box
+- [x] get async functions on send working
+- [x] add error display when there's an issue sending the token
+- [x] add error display when the code is incorrect
+- [x] hide TaskInfoPanel if user is NOT verified
+- [x] move verification banner so it's task/user specific101618
+- [x] fix promise handling - actually have a pending/fulfilled state
+- [x] hide verification banner when the task concludes
+- [x] hide verification button if call has ended (in the "post call state")
+
+# Questions for code reviewers
+
+1. I'm not an experienced React or Flex developer, open to any feedback on the general structure/layout!
+1. How do I persist state for the duration of a task? Currently the state resets on refresh.
+1. This flow requires the agent to type in the code. Is this use case valuable or should I focus on a pre-call automatic authentication (using DTMF input)
+1. Is it possible to extend form styling? [See this Slack post](https://twilio.slack.com/archives/C782V4C3Z/p1593111279494100)
+1. Any other suggestions or ideas?
+
+
+# Later features
+- [ ] automatic authentication before the call is accepted - use dtmf to input code (different plugin?)
+- [ ] add resend button
+- [ ] use material-ui?
