@@ -1,5 +1,5 @@
 import React from 'react';
-import { withTaskContext, Icon } from '@twilio/flex-ui';
+import { withTaskContext, Icon, TaskInfoPanel } from '@twilio/flex-ui';
 
 import { 
   StartVerifyButtonStyles,
@@ -28,7 +28,7 @@ const StartVerify = (props) => {
 export const VerifyButton = withTaskContext(StartVerify);
 
 export const CheckVerify = (props) => {
-  // if (props.tokenSent && !props.verified && props.task.status === 'accepted') {
+  if (props.tokenSent && !props.verified && props.task.status === 'accepted') {
     return (
       <InputContainerStyles>
         <InputTokenStyles type="text" placeholder="Verification token" id="token" />
@@ -38,9 +38,9 @@ export const CheckVerify = (props) => {
         }}><Icon icon="AcceptLarge"></Icon></TokenSubmitStyles>
       </InputContainerStyles>
     )
-  // } else {
-  //   return null;
-  // }
+  } else {
+    return null;
+  }
 }
 
 export const TokenForm = withTaskContext(CheckVerify);
@@ -71,8 +71,12 @@ export const ErrorMessage = (props) => {
   }
 }
 
-const TaskInfoPanel = (props) => {
-  console.log(props.flex);
+const NewTaskInfoPanel = (props) => {
+  if (props.verified) {
+    return (<TaskInfoPanel />);
+  } else {
+    return null;
+  }
 }
 
-export const AuthenticatedTaskInfoPanel = withTaskContext(TaskInfoPanel)
+export const AuthenticatedTaskInfoPanel = withTaskContext(NewTaskInfoPanel)

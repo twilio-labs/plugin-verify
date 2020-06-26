@@ -7,6 +7,7 @@ import {
   VerifyBannerContainer,
   TokenFormContainer,
   ErrorMessageContainer,
+  AuthenticatedInfoContainer,
 } from './components/Verify/Verify.Container';
 import reducers, { namespace } from './states';
 
@@ -57,8 +58,10 @@ export default class VerifyPlugin extends FlexPlugin {
 
     // Remove caller information until they are verifiied
     // TODO - make this dynamic based on props.verified
-    // flex.TaskCanvasTabs.Content.remove("info");
-    
+    flex.TaskCanvasTabs.Content.remove("info");
+    flex.TaskCanvasTabs.Content.add(
+      <AuthenticatedInfoContainer key="new-task-info"/>
+    );
   }
 
   /**
