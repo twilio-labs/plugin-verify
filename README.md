@@ -1,6 +1,6 @@
 # Twilio Flex Plugin for Verify
 
-![demo video](flex-verify-demo.mp4)
+![demo video](flex-verify-demo.gif)
 
 ## Setup
 
