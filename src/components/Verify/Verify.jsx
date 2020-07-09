@@ -27,7 +27,7 @@ export const VerifyButton = withTaskContext(
 );
 
 export const TokenForm = withTaskContext(
-  (tokenSent, verified, task, checkVerification) => {
+  ({tokenSent, verified, task, checkVerification}) => {
     if (tokenSent && !verified && task.status === 'accepted') {
       return (
         <InputContainerStyles>
@@ -44,7 +44,7 @@ export const TokenForm = withTaskContext(
   }
 );
 
-export const VerifyBanner = withTaskContext((verified, task) => {
+export const VerifyBanner = withTaskContext(({verified, task}) => {
   if (verified && task.status === 'accepted') {
     return (
       <VerifiedBannerStyles>
@@ -56,7 +56,7 @@ export const VerifyBanner = withTaskContext((verified, task) => {
   }
 });
 
-export const ErrorMessage = (error) => {
+export const ErrorMessage = ({error}) => {
   if (typeof error != 'undefined') {
     return (
       <ErrorMessageStyles>
@@ -68,7 +68,7 @@ export const ErrorMessage = (error) => {
   }
 };
 
-export const AuthenticatedTaskInfoPanel = withTaskContext((verified) => {
+export const AuthenticatedTaskInfoPanel = withTaskContext(({verified}) => {
   if (verified) return <TaskInfoPanel />
-  else return null;
+  else return null
 });
