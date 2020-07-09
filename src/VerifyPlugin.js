@@ -1,5 +1,5 @@
 import React from 'react';
-import { VERSION } from '@twilio/flex-ui';
+import { VERSION, Icon, Tab } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import {
@@ -58,19 +58,11 @@ export default class VerifyPlugin extends FlexPlugin {
 
     // Remove caller information until they are verifiied
     flex.TaskCanvasTabs.Content.remove("info");
-    
-    // TODO - SHOW info tab when caller IS verified.
-    
-    // Option 2 - is there an elegant way to do this? This doesn't work.
-    // flex.TaskCanvasTabs.Content.remove("info", {
-    //   if : props => !props.verified 
-    // });
 
-    // Option 2 - This kind of works, but I haven't cleaned it up
-    // since I'm hoping there's a way to make Option 1 work
-    // flex.TaskCanvasTabs.Content.add(
-    //   <AuthenticatedInfoContainer key="auth-info"/>
-    // );
+    // Show caller information when they are verified
+    flex.TaskCanvasTabs.Content.add(
+      <AuthenticatedInfoContainer label="info" key="auth-info"/>
+    );
   }
 
   /**

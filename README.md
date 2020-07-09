@@ -46,7 +46,9 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 
 ## TODO
 
-- [ ] remove task info panel tab until it needs to show up
+- [x] remove task info panel tab until it needs to show up
+- [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
+- [x] condense 'withTaskContext's
 - [ ] persist verification state on refresh / for duration of the task
 - [ ] add tests
 - [ ] add verify service as part of the plugin installation/setup instructions
