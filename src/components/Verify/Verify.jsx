@@ -16,7 +16,7 @@ export const VerifyButton = withTaskContext(
     if (!verified && !tokenSent && task.status === 'accepted') {
       const to = task.defaultFrom;
       return (
-        <StartVerifyButtonStyles onClick={() => startVerification(to)}>
+        <StartVerifyButtonStyles onClick={() => startVerification(to, task.sid)}>
           SEND VERIFICATION TOKEN TO USER
         </StartVerifyButtonStyles>
       );
@@ -34,7 +34,7 @@ export const TokenForm = withTaskContext(
           <InputTokenStyles type="text" placeholder="Verification token" id="token" />
           <TokenSubmitStyles type="button" onClick={() => {
             const token = document.getElementById("token").value;
-            checkVerification(token, task.defaultFrom);
+            checkVerification(token, task.defaultFrom, task.sid);
           }}><Icon icon="AcceptLarge"></Icon></TokenSubmitStyles>
         </InputContainerStyles>
       )

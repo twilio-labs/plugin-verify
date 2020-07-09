@@ -53,14 +53,16 @@ function checkVerification(token, to) {
 }
 
 export class Actions {
-  static startVerification = (to) => ({
+  static startVerification = (to, taskId) => ({
     type: ACTION_START_VERIFICATION,
     payload: startVerification(to),
+    taskId: taskId,
   })
 
-  static checkVerification = (token, to) => ({
+  static checkVerification = (token, to, taskId) => ({
     type: ACTION_CHECK_VERIFICATION,
     payload: checkVerification(token, to),
+    taskId: taskId,
   })
 }
 
@@ -70,6 +72,8 @@ export function reduce(state = initialState, action) {
       return state;
     case `${ACTION_START_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
+      localStorage.setItem(`verified:${action.taskId}`, success);
+
       if (success) {
         return {
           ...state,
@@ -94,6 +98,8 @@ export function reduce(state = initialState, action) {
       return state;
     case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
+      localStorage.setItem('verified', success);
+
       const nextState = {
         ...state,
         verified: success,

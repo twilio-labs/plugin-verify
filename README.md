@@ -48,13 +48,14 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 
 ## TODO
 
+- [ ] make verified and tokenSent task specific (task.sid)
 - [x] remove task info panel tab until it needs to show up
 - [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
 - [x] condense 'withTaskContext's
 - [ ] go through @jfischelli's feedback
-- [ ] don't hardcode function URLs
+- [x] don't hardcode function URLs
 - [ ] rearchitect with custom actions? https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js
-- [ ] persist verification state on refresh / for duration of the task
+- [ ] persist verification state on refresh / for duration of the task (localStorage) ? 
 - [ ] add tests
 - [ ] add verify service as part of the plugin installation/setup instructions
 - [ ] figure out how to deploy functions seamlessly
@@ -88,3 +89,4 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 - [ ] automatic authentication before the call is accepted - use dtmf to input code (different plugin?)
 - [ ] add resend button
 - [ ] use material-ui?
+- [ ] add authentication to Twilio functions (https://www.npmjs.com/package/twilio-flex-token-validator)
