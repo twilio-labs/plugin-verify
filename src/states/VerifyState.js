@@ -20,7 +20,9 @@ function startVerification(to) {
     }
   };
 
-  return fetch('http://flex-verify-4625-dev.twil.io/start-verify', options)
+  const { REACT_APP_SERVICE_BASE_URL } = process.env;
+
+  return fetch(`${REACT_APP_SERVICE_BASE_URL}/start-verify`, options)
     .then(resp => resp.json())
     .then(data => {
       return data;
@@ -41,7 +43,9 @@ function checkVerification(token, to) {
     }
   };
 
-  return fetch('http://flex-verify-4625-dev.twil.io/check-verify', options)
+  const { REACT_APP_SERVICE_BASE_URL } = process.env;
+
+  return fetch(`${REACT_APP_SERVICE_BASE_URL}/check-verify`, options)
     .then(resp => resp.json())
     .then(data => {
       return data;
@@ -55,7 +59,7 @@ export class Actions {
   })
 
   static checkVerification = (token, to) => ({
-    type: 'CHECK_VERIFICATION',
+    type: ACTION_CHECK_VERIFICATION,
     payload: checkVerification(token, to),
   })
 }

@@ -12,6 +12,8 @@ Then install the dependencies by running `npm install`:
 npm install
 ```
 
+`REACT_APP_SERVICE_BASE_URL`: your Twilio Functions base url (this will be available after you deploy your functions). In local development environment, it could be your localhost base url. 
+
 ## Development
 
 Start the server by running:
@@ -49,6 +51,9 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 - [x] remove task info panel tab until it needs to show up
 - [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
 - [x] condense 'withTaskContext's
+- [ ] go through @jfischelli's feedback
+- [ ] don't hardcode function URLs
+- [ ] rearchitect with custom actions? https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js
 - [ ] persist verification state on refresh / for duration of the task
 - [ ] add tests
 - [ ] add verify service as part of the plugin installation/setup instructions
@@ -56,6 +61,7 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 - [ ] reference deployed functions in VerifyState instead
 - [ ] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
 - [ ] partner promotion content - talk to justin pirie
+- [ ] improve README / write blog post
 - [x] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
 - [x] show TaskInfoPanel only if user IS verified
 - [x] fix formatting of input token box
