@@ -48,11 +48,8 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 
 ## TODO
 
-- [ ] add tests
-- [ ] go through @jfischelli's feedback
 - [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
 - [ ] add verify service as part of the plugin installation/setup instructions
-- [ ] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
 - [ ] partner promotion content - talk to justin pirie
 - [ ] improve README / write blog post
 - [x] reference deployed functions in VerifyState instead
@@ -86,6 +83,7 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 # Later features
 - [ ] automatic authentication before the call is accepted - use dtmf to input code (different plugin?)
 - [ ] add resend button
+- [ ] add tests
 - [ ] use material-ui?
 - [ ] add authentication to Twilio functions (https://www.npmjs.com/package/twilio-flex-token-validator)
 - [ ] figure out how to deploy functions seamlessly
