@@ -1,8 +1,9 @@
 import React from 'react';
-import { VERSION, Icon, Tab } from '@twilio/flex-ui';
+import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import {
+  StateLoaderContainer,
   VerifyButtonContainer,
   VerifyBannerContainer,
   TokenFormContainer,
@@ -27,6 +28,8 @@ export default class VerifyPlugin extends FlexPlugin {
    */
   init(flex, manager) {
     this.registerReducers(manager);
+
+    flex.TaskCanvas.Content.add(<StateLoaderContainer key="load-state" />);
 
     flex.TaskCanvas
       .Content

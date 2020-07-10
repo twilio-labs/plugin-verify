@@ -11,10 +11,16 @@ import {
 } from './Verify.Styles';
 
 
+export const StateLoader = withTaskContext(({ task, loadState }) => {
+  loadState(task.sid);
+  return null;
+});
+
 export const VerifyButton = withTaskContext(
   ({verified, tokenSent, task, startVerification}) => {
     if (!verified && !tokenSent && task.status === 'accepted') {
       const to = task.defaultFrom;
+      console.log(task.sid);
       return (
         <StartVerifyButtonStyles onClick={() => startVerification(to, task.sid)}>
           SEND VERIFICATION TOKEN TO USER
@@ -44,7 +50,7 @@ export const TokenForm = withTaskContext(
   }
 );
 
-export const VerifyBanner = withTaskContext(({verified, task}) => {
+export const VerifyBanner = withTaskContext(({verified, task, loadState}) => {
   if (verified && task.status === 'accepted') {
     return (
       <VerifiedBannerStyles>
