@@ -1,9 +1,10 @@
 const ACTION_START_VERIFICATION = 'START_VERIFICATION';
 const ACTION_CHECK_VERIFICATION = 'CHECK_VERIFICATION';
 
+const VERIFIED_STATE_KEY = (taskSid) => `verified:${taskSid}`;
+const TOKEN_SENT_STATE_KEY = (taskSid) => `tokenSent:${taskSid}`;
+
 const initialState = {
-  verified: false,
-  tokenSent: false,
   error: undefined,
 };
 
@@ -52,38 +53,55 @@ function checkVerification(token, to) {
     });
 }
 
+function getStatus(taskSid) {
+  const tokenSentKey = TOKEN_SENT_STATE_KEY(taskSid);
+  const verifiedKey = VERIFIED_STATE_KEY(taskSid);
+  return ({
+    tokenSentKey: localStorage.get(tokenSentKey),
+    verifiedKey: localStorage.get(verifiedKey),
+  })
+}
+
 export class Actions {
-  static startVerification = (to, taskId) => ({
+  static startVerification = (to, taskSid) => ({
     type: ACTION_START_VERIFICATION,
     payload: startVerification(to),
-    taskId: taskId,
+    taskSid: taskSid,
   })
 
-  static checkVerification = (token, to, taskId) => ({
+  static checkVerification = (token, to, taskSid) => ({
     type: ACTION_CHECK_VERIFICATION,
     payload: checkVerification(token, to),
-    taskId: taskId,
+    taskSid: taskSid,
   })
 }
 
 export function reduce(state = initialState, action) {
+  state = {
+    ...state,
+    ...getStatus(action.taskSid),
+  }
+
+  const tokenSentKey = TOKEN_SENT_STATE_KEY(action.taskSid);
+  const verifiedKey = VERIFIED_STATE_KEY(action.taskSid);
+
   switch (action.type) {
     case `${ACTION_START_VERIFICATION}_PENDING`:
       return state;
     case `${ACTION_START_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
-      localStorage.setItem(`verified:${action.taskId}`, success);
+      localStorage.setItem(tokenSentKey, success);
 
       if (success) {
         return {
           ...state,
-          tokenSent: true,
+          tokenSentKey: true,
           error: undefined,
         }
       } else {
         return {
           ...state,
-          tokenSent: false,
+          tokenSentKey: false,
           error: action.payload.error.message,
         }
       }
@@ -91,18 +109,18 @@ export function reduce(state = initialState, action) {
     case `${ACTION_START_VERIFICATION}_REJECTED`:
       return {
         ...state,
-        verified: false,
+        verifiedKey: false,
         error: "System error."
       };
     case `${ACTION_CHECK_VERIFICATION}_PENDING`:
       return state;
     case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
-      localStorage.setItem('verified', success);
+      localStorage.setItem(verifiedKey, success);
 
       const nextState = {
         ...state,
-        verified: success,
+        verifiedKey: success,
         error: undefined,
       }
       if (!success) {
@@ -114,12 +132,13 @@ export function reduce(state = initialState, action) {
         return nextState;
       }
     }
-    case `${ACTION_CHECK_VERIFICATION}_REJECTED`:
+    case `${ACTION_CHECK_VERIFICATION}_REJECTED`: {
       return {
         ...state,
-        verified: false,
+        verifiedKey: false,
         error: "System error."
       };
+    }
     default: {
       return state;
     }
