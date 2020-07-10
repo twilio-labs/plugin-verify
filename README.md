@@ -48,21 +48,19 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 
 ## TODO
 
-- [ ] make verified and tokenSent task specific (task.sid)
-- [x] remove task info panel tab until it needs to show up
-- [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
-- [x] condense 'withTaskContext's
-- [ ] go through @jfischelli's feedback
-- [x] don't hardcode function URLs
-- [ ] rearchitect with custom actions? https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js
-- [ ] persist verification state on refresh / for duration of the task (localStorage) ? 
 - [ ] add tests
+- [ ] go through @jfischelli's feedback
+- [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
 - [ ] add verify service as part of the plugin installation/setup instructions
-- [ ] figure out how to deploy functions seamlessly
-- [ ] reference deployed functions in VerifyState instead
 - [ ] get reviews (@fplacido, @nshetty). Ricky recs: (se: @cavila and @jfischelli, support: @rbeatie or  @dclarke)
 - [ ] partner promotion content - talk to justin pirie
 - [ ] improve README / write blog post
+- [x] reference deployed functions in VerifyState instead
+- [x] make verified and tokenSent task specific (task.sid)
+- [x] remove task info panel tab until it needs to show up
+- [x] condense 'withTaskContext's
+- [x] don't hardcode function URLs
+- [x] persist verification state on refresh / for duration of the task (localStorage) ? 
 - [x] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
 - [x] show TaskInfoPanel only if user IS verified
 - [x] fix formatting of input token box
@@ -90,3 +88,5 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 - [ ] add resend button
 - [ ] use material-ui?
 - [ ] add authentication to Twilio functions (https://www.npmjs.com/package/twilio-flex-token-validator)
+- [ ] figure out how to deploy functions seamlessly
+- [ ] rearchitect with custom actions? https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js
