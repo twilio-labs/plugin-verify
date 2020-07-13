@@ -1,5 +1,5 @@
 {
-  "name": "default",
+  "name": "verify-plugin",
   "version": "0.0.0",
   "private": true,
   "scripts": {
