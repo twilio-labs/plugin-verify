@@ -48,43 +48,19 @@ Note: Common packages like `React`, `ReactDOM`, `Redux` and `ReactRedux` are not
 
 ## TODO
 
-- [ ] don't show "INFO" tab marker (even tho it's empty) until it's verified
-- [ ] add verify service as part of the plugin installation/setup instructions
-- [ ] partner promotion content - talk to justin pirie
+- [ ] don't show "INFO" tab marker (even though it's empty) until it's verified
 - [ ] improve README / write blog post
-- [x] reference deployed functions in VerifyState instead
-- [x] make verified and tokenSent task specific (task.sid)
-- [x] remove task info panel tab until it needs to show up
-- [x] condense 'withTaskContext's
-- [x] don't hardcode function URLs
-- [x] persist verification state on refresh / for duration of the task (localStorage) ? 
-- [x] add functions as part of the plugin. see: https://www.twilio.com/blog/flex-plugins-vs-code-functions-cli
-- [x] show TaskInfoPanel only if user IS verified
-- [x] fix formatting of input token box
-- [x] get async functions on send working
-- [x] add error display when there's an issue sending the token
-- [x] add error display when the code is incorrect
-- [x] hide TaskInfoPanel if user is NOT verified
-- [x] move verification banner so it's task/user specific101618
-- [x] fix promise handling - actually have a pending/fulfilled state
-- [x] hide verification banner when the task concludes
-- [x] hide verification button if call has ended (in the "post call state")
 
 # Questions for code reviewers
 
-1. I'm not an experienced React or Flex developer, open to any feedback on the general structure/layout!
-1. How do I persist state for the duration of a task? Currently the state resets on refresh.
-1. This flow requires the agent to type in the code. Is this use case valuable or should I focus on a pre-call automatic authentication (using DTMF input)
-1. How would you toggle content viewability based on plugin state? [See this example for what I'm trying to do](https://github.com/robinske/plugin-verify/blob/master/src/VerifyPlugin.js#L62)
-1. Is it possible to extend flex-ui form styling? Or should I just be using Material UI? [See this Slack post](https://twilio.slack.com/archives/C782V4C3Z/p1593111279494100)
-1. Any other suggestions or ideas?
+1. Any ideas how to remove the [`INFO` tab](https://github.com/robinske/plugin-verify/blob/master/src/VerifyPlugin.js#L66) completely until the `verified` state is set to `true`? The current code only removes the tab *content* but not the tab label when the user is not verified.
+1. Open to any feedback on the general structure/layout/javascriptyness.
 
 
 # Later features
-- [ ] automatic authentication before the call is accepted - use dtmf to input code (different plugin?)
+- [ ] automatic authentication before the call is accepted - use DTMF to input code ([WIP different plugin](https://github.com/robinske/plugin-auto-verify))
 - [ ] add resend button
 - [ ] add tests
-- [ ] use material-ui?
-- [ ] add authentication to Twilio functions (https://www.npmjs.com/package/twilio-flex-token-validator)
-- [ ] figure out how to deploy functions seamlessly
-- [ ] rearchitect with custom actions? https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js
+- [ ] use material-ui for form input and errors
+- [ ] maybe: [add authentication to Twilio functions](https://www.npmjs.com/package/twilio-flex-token-validator)
+- [ ] maybe: rearchitect with [custom actions?](https://github.com/twilio-professional-services/flex-dialpad-addon-plugin/blob/c6726b5086162c247d75adcb0851b36845114b51/src/customActions/internalCall/index.js)
