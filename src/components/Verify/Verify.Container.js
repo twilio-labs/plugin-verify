@@ -12,6 +12,7 @@ import {
 } from './Verify';
 
 const mapStateToProps = (state) => ({
+  pendingSent: state['verify'].verify.pendingSent,
   verified: state['verify'].verify.verified,
   tokenSent: state['verify'].verify.tokenSent,
   error: state['verify'].verify.error,

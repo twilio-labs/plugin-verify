@@ -26,6 +26,12 @@ export const StartVerifyButtonStyles = styled(Button)`
   background: #d32f2f;
 `
 
+export const DisabledButtonStyles = styled(Button)`
+  disabled: true;
+  color: white;
+  background: #d3d3d3;
+`
+
 export const BannerStyles = styled('div')`
   font-weight: bold;
   color: white;

@@ -1,7 +1,8 @@
 import React from 'react';
 import { withTaskContext, Icon, TaskInfoPanel } from '@twilio/flex-ui';
 
-import { 
+import {
+  DisabledButtonStyles,
   StartVerifyButtonStyles,
   VerifiedBannerStyles,
   InputTokenStyles,
@@ -17,10 +18,17 @@ export const StateLoader = withTaskContext(({ task, loadState }) => {
 });
 
 export const VerifyButton = withTaskContext(
-  ({verified, tokenSent, task, startVerification}) => {
+  ({verified, pendingSent, tokenSent, task, startVerification}) => {
     if (!verified && !tokenSent && task.status === 'accepted') {
       const to = task.defaultFrom;
-      console.log(task.sid);
+      if (pendingSent) {
+        return (
+          <DisabledButtonStyles>
+            VERIFICATION SENT
+          </DisabledButtonStyles>
+        )
+      }
+
       return (
         <StartVerifyButtonStyles onClick={() => startVerification(to, task.sid)}>
           SEND VERIFICATION TOKEN TO USER

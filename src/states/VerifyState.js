@@ -6,6 +6,7 @@ const VERIFIED_STATE_KEY = (taskSid) => `verified:${taskSid}`;
 const TOKEN_SENT_STATE_KEY = (taskSid) => `tokenSent:${taskSid}`;
 
 const initialState = {
+  pendingSent: false,
   tokenSent: false,
   verified: false,
   error: undefined,
@@ -95,7 +96,10 @@ export function reduce(state = initialState, action) {
       }
     }
     case `${ACTION_START_VERIFICATION}_PENDING`:
-      return state;
+      return {
+        ...state,
+        pendingSent: true,
+      };
     case `${ACTION_START_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
       const error = success ? {} : {error: action.payload.error.message}
