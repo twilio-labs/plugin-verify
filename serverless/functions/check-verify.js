@@ -21,9 +21,9 @@ exports.handler = function(context, event, callback) {
   response.appendHeader('Content-Type', 'application/json');
   
   // uncomment to support CORS
-  // response.appendHeader('Access-Control-Allow-Origin', '*');
-  // response.appendHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  // response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
+  response.appendHeader('Access-Control-Allow-Origin', '*');
+  response.appendHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  response.appendHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (typeof event.to === 'undefined' ||
       typeof event.verification_code === 'undefined') {
