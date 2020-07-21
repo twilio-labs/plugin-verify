@@ -24,12 +24,14 @@ export const TokenSubmitStyles = styled(Button)`
 export const StartVerifyButtonStyles = styled(Button)`
   color: white;
   background: #d32f2f;
+  text-transform: uppercase;
 `
 
 export const DisabledButtonStyles = styled(Button)`
   disabled: true;
   color: white;
   background: #d3d3d3;
+  text-transform: uppercase;
 `
 
 export const BannerStyles = styled('div')`
@@ -38,6 +40,7 @@ export const BannerStyles = styled('div')`
   padding: 8px;
   line-height: normal;
   text-align: center;
+  text-transform: uppercase;
 `
 
 export const ErrorMessageStyles = styled(BannerStyles)`

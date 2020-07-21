@@ -23,14 +23,14 @@ export const VerifyButton = withTaskContext(
     if (pendingSent) {
       return (
         <DisabledButtonStyles>
-          VERIFICATION SENT
+          verification sent
         </DisabledButtonStyles>
       )
     }
 
     return (
       <StartVerifyButtonStyles onClick={() => startVerification(to, task.sid)}>
-        SEND VERIFICATION TOKEN TO USER
+        send verification token to user
       </StartVerifyButtonStyles>
     );
   }
@@ -61,7 +61,7 @@ export const VerifyBanner = withTaskContext(({verified, task}) => {
 
   return (
     <VerifiedBannerStyles>
-      CUSTOMER VERIFIED
+      customer verified
     </VerifiedBannerStyles>
   );
 });
