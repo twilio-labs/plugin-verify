@@ -103,18 +103,20 @@ export function reduce(state = initialState, action) {
     case `${ACTION_START_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
       const error = success ? {} : {error: action.payload.error.message}
-      if (success) {
-        delete state.error;
-      }
-
       const tokenSentKey = TOKEN_SENT_STATE_KEY(action.payload.taskSid);
       localStorage.setItem(tokenSentKey, success);
 
-      return {
+      var nextState = {
         ...state,
         ...error,
         tokenSent: success,
       }
+
+      if (success) {
+        delete nextState.error;
+      }
+
+      return nextState
     }
     case `${ACTION_START_VERIFICATION}_REJECTED`: {
       return {
@@ -128,18 +130,20 @@ export function reduce(state = initialState, action) {
     case `${ACTION_CHECK_VERIFICATION}_FULFILLED`: {
       const success = action.payload.success;
       const error = success ? {} : {error: "Incorrect token."};
-      if (success) {
-        delete state.error;
-      }
-
       const verifiedKey = VERIFIED_STATE_KEY(action.payload.taskSid);
       localStorage.setItem(verifiedKey, success);
 
-      return {
+      var nextState = {
         ...state,
         ...error,
         verified: success,
       }
+
+      if (success) {
+        delete nextState.error;
+      }
+
+      return nextState;
     }
     case `${ACTION_CHECK_VERIFICATION}_REJECTED`: {
       return {

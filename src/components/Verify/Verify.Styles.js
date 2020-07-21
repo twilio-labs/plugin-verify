@@ -40,7 +40,6 @@ export const BannerStyles = styled('div')`
   padding: 8px;
   line-height: normal;
   text-align: center;
-  text-transform: uppercase;
 `
 
 export const ErrorMessageStyles = styled(BannerStyles)`
@@ -49,4 +48,5 @@ export const ErrorMessageStyles = styled(BannerStyles)`
 
 export const VerifiedBannerStyles = styled(BannerStyles)`
   background: #3d994b;
+  text-transform: uppercase;
 `;
