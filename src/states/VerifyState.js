@@ -106,17 +106,17 @@ export function reduce(state = initialState, action) {
       const tokenSentKey = TOKEN_SENT_STATE_KEY(action.payload.taskSid);
       localStorage.setItem(tokenSentKey, success);
 
-      var nextState = {
+      var startFulfilledState = {
         ...state,
         ...error,
         tokenSent: success,
       }
 
       if (success) {
-        delete nextState.error;
+        delete startFulfilledState.error;
       }
 
-      return nextState
+      return startFulfilledState
     }
     case `${ACTION_START_VERIFICATION}_REJECTED`: {
       return {
@@ -133,17 +133,17 @@ export function reduce(state = initialState, action) {
       const verifiedKey = VERIFIED_STATE_KEY(action.payload.taskSid);
       localStorage.setItem(verifiedKey, success);
 
-      var nextState = {
+      var checkFulfilledState = {
         ...state,
         ...error,
         verified: success,
       }
 
       if (success) {
-        delete nextState.error;
+        delete checkFulfilledState.error;
       }
 
-      return nextState;
+      return checkFulfilledState;
     }
     case `${ACTION_CHECK_VERIFICATION}_REJECTED`: {
       return {
