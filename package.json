@@ -1,7 +1,12 @@
 {
   "name": "plugin-verify",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
+  "author": {
+    "name": "Kelley Robinson",
+    "email": "krobinson@twilio.com"
+  },
+  "license": "MIT",
   "scripts": {
     "bootstrap": "flex-plugin check-start",
     "prebuild": "rimraf build && npm run bootstrap",
