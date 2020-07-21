@@ -41,22 +41,22 @@ Update the REACT_APP_SERVICE_BASE_URL to be your new function url.
 REACT_APP_SERVICE_BASE_URL="http://verify-plugin-1234-dev.twil.io"
 ```
 
-## Run the plugin locally
+### Run the plugin locally
 
 ```
 twilio flex:plugins:start
 ```
 
-## Deploy the plugin
+### Deploy the plugin
 ```
 twilio flex:plugins:deploy
 ```
 
-### Known issues
+## Known issues
 
 - "INFO" tab marker shows (even though it's empty) when the user is not verified
 
-### Todo
+## Todo
 - [ ] fix "INFO" tab marker
 - [ ] automatic authentication before the call is accepted - use DTMF to input code ([WIP different plugin](https://github.com/robinske/plugin-auto-verify))
 - [ ] add resend button
