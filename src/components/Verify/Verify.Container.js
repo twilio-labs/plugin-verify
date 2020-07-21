@@ -23,8 +23,10 @@ const mapDispatchToProps = (dispatch) => ({
   checkVerification: bindActionCreators(Actions.checkVerification, dispatch),
 });
 
-export const VerifyButtonContainer = connect(mapStateToProps, mapDispatchToProps)(VerifyButton);
-export const TokenFormContainer = connect(mapStateToProps, mapDispatchToProps)(TokenForm);
-export const VerifyBannerContainer = connect(mapStateToProps, mapDispatchToProps)(VerifyBanner);
-export const ErrorMessageContainer = connect(mapStateToProps, mapDispatchToProps)(ErrorMessage);
-export const AuthenticatedInfoContainer = connect(mapStateToProps, mapDispatchToProps)(AuthenticatedTaskInfoPanel);
+const connectVerify = connect(mapStateToProps, mapDispatchToProps);
+
+export const VerifyButtonContainer = connectVerify(VerifyButton);
+export const TokenFormContainer = connectVerify(TokenForm);
+export const VerifyBannerContainer = connectVerify(VerifyBanner);
+export const ErrorMessageContainer = connectVerify(ErrorMessage);
+export const AuthenticatedInfoContainer = connectVerify(AuthenticatedTaskInfoPanel);
