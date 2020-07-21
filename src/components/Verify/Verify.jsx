@@ -12,13 +12,9 @@ import {
 } from './Verify.Styles';
 
 
-export const StateLoader = withTaskContext(({task, loadState}) => {
-  loadState(task.sid);
-  return null;
-});
-
 export const VerifyButton = withTaskContext(
-  ({verified, pendingSent, tokenSent, task, startVerification}) => {
+  ({verified, pendingSent, tokenSent, task, startVerification, loadState}) => {
+    loadState(task.sid);
     if (verified || tokenSent || task.status !== 'accepted') {
       return null;
     }

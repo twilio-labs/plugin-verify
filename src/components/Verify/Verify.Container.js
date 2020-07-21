@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 
 import { Actions } from '../../states/VerifyState';
 import {
-  StateLoader,
   VerifyButton,
   VerifyBanner,
   TokenForm,
@@ -24,7 +23,6 @@ const mapDispatchToProps = (dispatch) => ({
   checkVerification: bindActionCreators(Actions.checkVerification, dispatch),
 });
 
-export const StateLoaderContainer = connect(mapStateToProps, mapDispatchToProps)(StateLoader);
 export const VerifyButtonContainer = connect(mapStateToProps, mapDispatchToProps)(VerifyButton);
 export const TokenFormContainer = connect(mapStateToProps, mapDispatchToProps)(TokenForm);
 export const VerifyBannerContainer = connect(mapStateToProps, mapDispatchToProps)(VerifyBanner);

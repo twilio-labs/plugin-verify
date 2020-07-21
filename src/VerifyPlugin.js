@@ -29,7 +29,12 @@ export default class VerifyPlugin extends FlexPlugin {
   init(flex, manager) {
     this.registerReducers(manager);
 
-    flex.TaskCanvas.Content.add(<StateLoaderContainer key="load-state" />);
+    flex.TaskCanvas
+      .Content
+      .add(
+        <VerifyButtonContainer key="verify-button" />,
+        { sortOrder: 0 }
+      );
 
     flex.TaskCanvas
       .Content
@@ -44,13 +49,6 @@ export default class VerifyPlugin extends FlexPlugin {
         <ErrorMessageContainer key="error-message" />,
         { sortOrder: -1 }
       )
-
-    flex.TaskCanvas
-      .Content
-      .add(
-        <VerifyButtonContainer key="verify-button" />,
-        { sortOrder: 0 }
-      );
     
     flex.TaskCanvas
       .Content
