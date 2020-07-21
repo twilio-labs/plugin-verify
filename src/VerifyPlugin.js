@@ -3,7 +3,6 @@ import { VERSION } from '@twilio/flex-ui';
 import { FlexPlugin } from 'flex-plugin';
 
 import {
-  StateLoaderContainer,
   VerifyButtonContainer,
   VerifyBannerContainer,
   TokenFormContainer,

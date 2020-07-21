@@ -14,7 +14,9 @@ import {
 
 export const VerifyButton = withTaskContext(
   ({verified, pendingSent, tokenSent, task, startVerification, loadState}) => {
+    // load task status from localstorage
     loadState(task.sid);
+
     if (verified || tokenSent || task.status !== 'accepted') {
       return null;
     }

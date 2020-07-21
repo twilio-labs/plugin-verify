@@ -90,7 +90,7 @@ export function reduce(state = initialState, action) {
   switch (action.type) {
     case ACTION_LOAD_STATE: {
       return {
-        ...state,
+        ...initialState,
         verified: action.verified,
         tokenSent: action.tokenSent,
       }
